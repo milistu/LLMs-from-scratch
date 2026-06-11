@@ -10,3 +10,10 @@ dependencies = [
     "tiktoken>=0.13.0",
     "torch>=2.12.0",
 ]
+
+[dependency-groups]
+extra = [
+    "requests>=2.34.2",
+    "tqdm>=4.68.2",
+    "transformers>=5.11.0",
+]
