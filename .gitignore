@@ -219,3 +219,6 @@ __marimo__/
 
 # Project Specific
 uv.lock
+*.json
+*.bpe
+*.txt
