@@ -31,3 +31,9 @@ Causal self-attention blocks future tokens from entering the context of the curr
 Multi-head attention is essentially multiple instances of the self-attention mechanism, each with its own learned linear projections, running in parallel and then combining their outputs. This is computationally intensive, but it is crucial for the kind of complex pattern recognition that transformer-based LLMs are known for. To put it in perspective: the original transformer paper stacked the encoder-decoder block only six times, while GPT-2 small uses 12 transformer layers (which helped enable its capabilities), and GPT-3 has 96 transformer layers.
 
 The key idea: we run the attention mechanism multiple times in parallel, with different learned linear projections — the results of multiplying the input embeddings by separate weight matrices for each head — so the model can attend to different representation subspaces at different positions simultaneously.
+
+Masked multi-head attention is another name for multi-head attention that uses causal attention.
+
+## PyTorch buffers
+
+When our module contains tensors that aren't trainable weights (parameters) — like a causal mask — we register them as PyTorch buffers instead of keeping them as regular tensor attributes. Buffers solve two problems: they are automatically moved to the correct device when the module is moved (no manual `.to(device)` needed), and they are included in the `state_dict` so they get saved and loaded alongside the model's weights.
